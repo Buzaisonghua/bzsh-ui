@@ -4,20 +4,29 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc -b && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "prepare": "husky"
   },
   "dependencies": {
     "vue": "^3.5.13"
   },
   "devDependencies": {
+    "@bzsh-ui/eslint-config": "workspace:^",
+    "@commitlint/cli": "^19.6.1",
+    "@commitlint/config-conventional": "^19.6.0",
     "@eslint/js": "^9.18.0",
     "@vitejs/plugin-vue": "^5.2.1",
     "@vue/tsconfig": "^0.7.0",
+    "cz-git": "^1.11.0",
     "eslint": "^9.18.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.4.0",
     "prettier": "^3.4.2",
     "typescript": "~5.6.2",
     "vite": "^6.0.5",
-    "vue-tsc": "^2.2.0",
-    "@bzsh-ui/eslint-config": "workspace:^"
+    "vue-tsc": "^2.2.0"
+  },
+  "lint-staged": {
+    "*.{vue,js,ts,jsx,tsx,md,json}": "eslint --fix"
   }
 }
