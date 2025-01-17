@@ -8,7 +8,8 @@
     "prepare": "husky",
     "lint": "eslint . --max-warnings 0 --cache",
     "lint:fix": "pnpm run lint --fix",
-    "commit": "git pull && git add -A && git-cz && git push"
+    "commit": "git pull && git add -A && git-cz && git push",
+    "lint:lint-staged": "lint-staged"
   },
   "dependencies": {
     "vue": "^3.5.13"
@@ -34,8 +35,5 @@
     "commitizen": {
       "path": "node_modules/cz-git"
     }
-  },
-  "lint-staged": {
-    "*.{vue,js,ts,jsx,tsx,md,json}": "eslint --fix"
   }
 }
