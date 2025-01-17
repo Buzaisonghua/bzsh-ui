@@ -16,12 +16,12 @@
     "@bzsh-ui/eslint-config": "workspace:^",
     "@commitlint/cli": "^19.6.1",
     "@commitlint/config-conventional": "^19.6.0",
-    "@eslint/js": "^9.18.0",
     "@vitejs/plugin-vue": "^5.2.1",
     "@vue/tsconfig": "^0.7.0",
     "cz-conventional-changelog": "^3.3.0",
     "cz-git": "^1.11.0",
-    "eslint": "^9.18.0",
+    "eslint": "^8.57.1",
+    "eslint-define-config": "^1.5.1",
     "husky": "^9.1.7",
     "lint-staged": "^15.4.0",
     "prettier": "^3.4.2",
@@ -29,12 +29,12 @@
     "vite": "^6.0.5",
     "vue-tsc": "^2.2.0"
   },
-  "lint-staged": {
-    "*.{vue,js,ts,jsx,tsx,md,json}": "eslint --fix"
-  },
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "lint-staged": {
+    "*.{vue,js,ts,jsx,tsx,md,json}": "eslint --fix"
   }
 }

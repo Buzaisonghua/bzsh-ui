@@ -1,0 +1,4 @@
+{
+  "root": true,
+  "extends": ["@bzsh-ui/eslint-config"]
+}

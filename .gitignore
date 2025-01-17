@@ -20,3 +20,6 @@ cypress/screenshots/*
 cypress/videos/*
 tmp
 docs/.vitepress/cache
+
+# cache
+.eslintcache
