@@ -1,19 +1,55 @@
+import path from 'path'
+import { fileURLToPath } from 'url'
 import { defineFlatConfig } from 'eslint-define-config'
-import globals from 'globals'
 import pluginJs from '@eslint/js'
-import typescriptEslint from 'typescript-eslint'
-import vueEslint from 'eslint-plugin-vue'
-import prettierRecommended from 'eslint-plugin-prettier/recommended'
-// import unicorn from 'eslint-plugin-unicorn'
-// import importEslit from 'eslint-plugin-import'
+// import eslintRecommended from 'eslint:recommended'
+// import typescriptEslint from 'typescript-eslint'
+// import vueEslint from 'eslint-plugin-vue'
+// import prettierRecommended from 'eslint-plugin-prettier/recommended'
+import typescriptEslintPlugin from '@typescript-eslint/eslint-plugin'
+import prettierPlugin from 'eslint-plugin-prettier'
+import unicornPlugin from 'eslint-plugin-unicorn'
+import markdownPlugin from 'eslint-plugin-markdown'
+import { FlatCompat } from '@eslint/eslintrc'
+
+// mimic CommonJS variables -- not needed if using CommonJS
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+
+const compat = new FlatCompat({
+  baseDirectory: __dirname,
+})
 
 export default defineFlatConfig([
-  { languageOptions: { globals: { ...globals.browser, ...globals.node } } },
+  {
+    languageOptions: {
+      globals: {
+        window: 'readonly', // 假设你需要为浏览器设置全局变量
+        document: 'readonly',
+      },
+    },
+    plugins: {
+      '@typescript-eslint': typescriptEslintPlugin,
+      prettier: prettierPlugin,
+      unicorn: unicornPlugin,
+      markdown: markdownPlugin,
+    },
+    settings: {
+      'import/resolver': {
+        node: { extensions: ['.js', '.mjs', '.ts', '.d.ts', '.tsx'] },
+      },
+    },
+  },
   pluginJs.configs.recommended,
-  ...typescriptEslint.configs.recommended,
-  ...vueEslint.configs['flat/recommended'],
-  // unicorn,
-  // ...importEslit,
+  // ...eslintRecommended,
+  ...compat.extends('plugin:import/recommended'),
+  ...compat.extends('plugin:eslint-comments/recommended'),
+  ...compat.extends('plugin:import/recommended'),
+  ...compat.extends('plugin:jsonc/recommended-with-jsonc'),
+  // compat.extends('plugin:markdown/recommended'),
+  ...compat.extends('plugin:vue/vue3-recommended'),
+  ...compat.extends('plugin:@typescript-eslint/recommended'),
+  ...compat.extends('prettier'),
   {
     files: ['**/__tests__/**'],
     rules: {
@@ -42,52 +78,49 @@ export default defineFlatConfig([
     },
   },
   {
-    files: ['*.js', '*.ts', '*.vue'],
+    ignores: ['node_modules', '**/node_modules/**'],
+  },
+  {
+    files: ['**/*'],
     rules: {
-      /** 驼峰命名 */
+      // js/ts
       camelcase: ['error', { properties: 'never' }],
-      /** 禁止在代码中使用 console */
       'no-console': ['warn', { allow: ['error'] }],
-      /** 禁止使用 debugger 语句 */
       'no-debugger': 'warn',
-      /** 禁止在条件语句中使用常量条件，例如 if (true) 或 while (false)。 */
       'no-constant-condition': ['error', { checkLoops: false }],
-
       'no-restricted-syntax': ['error', 'LabeledStatement', 'WithStatement'],
-      /** 禁止在 async 函数中直接返回 await 的结果 */
       'no-return-await': 'error',
-      /** 禁止使用 var 声明变量 */
       'no-var': 'error',
-      /** 禁止使用空的 catch 语句块。*/
       'no-empty': ['error', { allowEmptyCatch: true }],
-      /** 强制使用 const 来声明不被重新赋值的变量 */
       'prefer-const': [
         'warn',
         { destructuring: 'all', ignoreReadBeforeAssign: true },
       ],
-      /** 强制使用箭头函数，而不是传统的函数表达式，尤其是在回调函数中。 */
       'prefer-arrow-callback': [
         'error',
         { allowNamedFunctions: false, allowUnboundThis: true },
       ],
-      'no-redeclare': 'error',
+      'object-shorthand': [
+        'error',
+        'always',
+        { ignoreConstructors: false, avoidQuotes: true },
+      ],
+      'prefer-rest-params': 'error',
+      'prefer-spread': 'error',
+      'prefer-template': 'error',
+
+      'no-redeclare': 'off',
+      '@typescript-eslint/no-redeclare': 'error',
 
       // best-practice
-      /** 当使用数组方法（如 forEach、map、filter 等）时，必须确保回调函数有返回值。 */
       'array-callback-return': 'error',
-      /** 要求所有变量声明（如 let、const）只在块级作用域内使用。 */
       'block-scoped-var': 'error',
-      /** 禁止使用 alert、confirm 和 prompt 等浏览器弹窗 */
       'no-alert': 'warn',
-      /**禁止在 switch 语句中的 case 语句块内声明变量（不加花括号时）。 */
       'no-case-declarations': 'error',
-      /** 禁止在字符串中使用换行符（即通过 + 拼接的多行字符串）。 */
       'no-multi-str': 'error',
-      /** 禁止使用 with 语句。 */
       'no-with': 'error',
-      /**禁止使用 void 操作符。 */
       'no-void': 'error',
-      /** 要求按照一定的规则对 import 语句进行排序。 */
+
       'sort-imports': [
         'warn',
         {
@@ -99,29 +132,21 @@ export default defineFlatConfig([
         },
       ],
 
+      // stylistic-issues
+      'prefer-exponentiation-operator': 'error',
+
       // ts
-      /** 重复声明 */
-      '@typescript-eslint/no-redeclare': 'error',
-      /** 使用any */
-      '@typescript-eslint/no-explicit-any': 'warn',
-      /** 函数没有显式指定返回值 */
       '@typescript-eslint/explicit-module-boundary-types': 'off',
-      /** 使用非空断言 */
+      '@typescript-eslint/no-explicit-any': 'off',
       '@typescript-eslint/no-non-null-assertion': 'off',
-      /** 禁止在可选链（?.）后使用非空断言（!） */
       '@typescript-eslint/no-non-null-asserted-optional-chain': 'off',
-      /** 使用 @ts-ignore 注释 */
       '@typescript-eslint/ban-ts-comment': ['off', { 'ts-ignore': false }],
-      /** 使用 require() 来导入模块 */
       '@typescript-eslint/no-require-imports': 'off',
-      /** 出现未使用的表达式 10+20 */
       '@typescript-eslint/no-unused-expressions': 'off',
 
       // vue
-      /** 使用v-html */
       'vue/no-v-html': 'error',
       'vue/require-default-prop': 'off',
-      /** 组件必须多个单词 */
       'vue/require-explicit-emits': 'off',
       'vue/multi-word-component-names': 'off',
       'vue/prefer-import-from-vue': 'off',
@@ -141,7 +166,109 @@ export default defineFlatConfig([
 
       // prettier
       'prettier/prettier': 'error',
+
+      // import
+      'import/first': 'error',
+      'import/no-duplicates': 'error',
+      'import/order': [
+        'error',
+        {
+          groups: [
+            'builtin',
+            'external',
+            'internal',
+            'parent',
+            'sibling',
+            'index',
+            'object',
+            'type',
+          ],
+
+          pathGroups: [
+            {
+              pattern: 'vue',
+              group: 'external',
+              position: 'before',
+            },
+            {
+              pattern: '@vue/**',
+              group: 'external',
+              position: 'before',
+            },
+            {
+              pattern: '@element-plus/**',
+              group: 'internal',
+            },
+          ],
+          pathGroupsExcludedImportTypes: ['type'],
+        },
+      ],
+      'import/no-unresolved': 'off',
+      'import/namespace': 'off',
+      'import/default': 'off',
+      'import/no-named-as-default': 'off',
+      'import/no-named-as-default-member': 'off',
+      'import/named': 'off',
+      'no-restricted-imports': [
+        'error',
+        {
+          paths: [
+            { name: 'lodash', message: 'Use lodash-unified instead.' },
+            { name: 'lodash-es', message: 'Use lodash-unified instead.' },
+          ],
+          patterns: [
+            {
+              group: ['lodash/*', 'lodash-es/*'],
+              message: 'Use lodash-unified instead.',
+            },
+          ],
+        },
+      ],
+
+      // eslint-plugin-eslint-comments
+      'eslint-comments/disable-enable-pair': [
+        'error',
+        { allowWholeFile: true },
+      ],
+
+      // unicorn
+      'unicorn/custom-error-definition': 'error',
+      'unicorn/error-message': 'error',
+      'unicorn/escape-case': 'error',
+      'unicorn/import-index': 'error',
+      'unicorn/new-for-builtins': 'error',
+      'unicorn/no-array-method-this-argument': 'error',
+      'unicorn/no-array-push-push': 'error',
+      'unicorn/no-console-spaces': 'error',
+      'unicorn/no-for-loop': 'error',
+      'unicorn/no-hex-escape': 'error',
+      'unicorn/no-instanceof-array': 'error',
+      'unicorn/no-invalid-remove-event-listener': 'error',
+      'unicorn/no-new-array': 'error',
+      'unicorn/no-new-buffer': 'error',
+      'unicorn/no-unsafe-regex': 'off',
+      'unicorn/number-literal-case': 'error',
+      'unicorn/prefer-array-find': 'error',
+      'unicorn/prefer-array-flat-map': 'error',
+      'unicorn/prefer-array-index-of': 'error',
+      'unicorn/prefer-array-some': 'error',
+      'unicorn/prefer-date-now': 'error',
+      'unicorn/prefer-dom-node-dataset': 'error',
+      'unicorn/prefer-includes': 'error',
+      'unicorn/prefer-keyboard-event-key': 'error',
+      'unicorn/prefer-math-trunc': 'error',
+      'unicorn/prefer-modern-dom-apis': 'error',
+      'unicorn/prefer-negative-index': 'error',
+      'unicorn/prefer-number-properties': 'error',
+      'unicorn/prefer-optional-catch-binding': 'error',
+      'unicorn/prefer-prototype-methods': 'error',
+      'unicorn/prefer-query-selector': 'error',
+      'unicorn/prefer-reflect-apply': 'error',
+      'unicorn/prefer-string-slice': 'error',
+      'unicorn/prefer-string-starts-ends-with': 'error',
+      'unicorn/prefer-string-trim-start-end': 'error',
+      'unicorn/prefer-type-error': 'error',
+      'unicorn/throw-new-error': 'error',
     },
   },
-  prettierRecommended,
 ])
