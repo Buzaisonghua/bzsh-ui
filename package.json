@@ -7,13 +7,13 @@
     "docs"
   ],
   "scripts": {
-    "cz": "czg",
     "dev": "pnpm -C play dev",
     "prepare": "husky",
     "lint": "eslint . --max-warnings 0 --cache",
     "lint:fix": "pnpm run lint --fix",
-    "commit": "git pull && git add -A && git-cz && git push",
-    "lint:lint-staged": "lint-staged"
+    "lint:lint-staged": "lint-staged",
+    "cz": "czg",
+    "commit": "git pull && git add -A && git-cz && git push"
   },
   "dependencies": {
     "vue": "^3.5.13"
@@ -24,7 +24,6 @@
     "@commitlint/config-conventional": "^19.6.0",
     "@vitejs/plugin-vue": "^5.2.1",
     "@vue/tsconfig": "^0.7.0",
-    "cz-conventional-changelog": "^3.3.0",
     "cz-git": "^1.11.0",
     "czg": "^1.11.0",
     "eslint": "^8.57.1",
