@@ -1,10 +1,14 @@
 {
   "private": true,
   "type": "module",
+  "workspaces": [
+    "packages/*",
+    "play",
+    "docs"
+  ],
   "scripts": {
-    "dev": "vite",
-    "build": "vue-tsc -b && vite build",
-    "preview": "vite preview",
+    "cz": "czg",
+    "dev": "pnpm -C play dev",
     "prepare": "husky",
     "lint": "eslint . --max-warnings 0 --cache",
     "lint:fix": "pnpm run lint --fix",
@@ -22,6 +26,7 @@
     "@vue/tsconfig": "^0.7.0",
     "cz-conventional-changelog": "^3.3.0",
     "cz-git": "^1.11.0",
+    "czg": "^1.11.0",
     "eslint": "^8.57.1",
     "eslint-define-config": "^1.5.1",
     "husky": "^9.1.7",
