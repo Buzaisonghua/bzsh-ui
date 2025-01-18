@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  <div>测试</div>
+  <div>测试sss </div>
 </template>
 
 <style scoped>
