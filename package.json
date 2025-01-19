@@ -1,4 +1,5 @@
 {
+  "version": "1.1.0",
   "private": true,
   "type": "module",
   "workspaces": [
@@ -12,8 +13,10 @@
     "lint": "eslint . --max-warnings 0 --cache",
     "lint:fix": "pnpm run lint --fix",
     "lint:lint-staged": "lint-staged",
+    "lint:style": "stylelint \"./**/*.{css,less,vue,html}\" --fix",
     "cz": "czg",
-    "commit": "git pull && git add -A && git-cz && git push"
+    "commit": "git pull && git add -A && git-cz && git push",
+    "release": "standard-version && git push --follow-tags"
   },
   "dependencies": {
     "vue": "^3.5.13"
@@ -30,7 +33,18 @@
     "eslint-define-config": "^1.5.1",
     "husky": "^9.1.7",
     "lint-staged": "^15.4.0",
+    "postcss": "^8.5.1",
+    "postcss-html": "^1.8.0",
+    "postcss-less": "^6.0.0",
     "prettier": "^3.4.2",
+    "standard-version": "^9.5.0",
+    "stylelint": "^16.13.2",
+    "stylelint-config-prettier": "^9.0.5",
+    "stylelint-config-recommended-less": "^3.0.1",
+    "stylelint-config-standard": "^37.0.0",
+    "stylelint-config-standard-vue": "^1.0.0",
+    "stylelint-less": "^3.0.1",
+    "stylelint-order": "^6.0.4",
     "typescript": "~5.6.2",
     "vite": "^6.0.5",
     "vue-tsc": "^2.2.0"
