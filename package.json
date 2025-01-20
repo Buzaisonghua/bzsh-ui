@@ -16,9 +16,15 @@
     "lint:style": "stylelint \"./**/*.{css,less,vue,html}\" --fix",
     "cz": "czg",
     "commit": "git pull && git add -A && git-cz && git push",
-    "release": "standard-version && git push --follow-tags"
+    "release": "standard-version && git push --follow-tags",
+    "docs:dev": "pnpm run -C docs dev",
+    "docs:build": "pnpm run -C docs build",
+    "docs:serve": "pnpm run -C docs serve",
+    "docs:gen-locale": "pnpm run -C docs gen-locale",
+    "docs:crowdin-credentials": "pnpm run -C docs crowdin-credentials"
   },
   "dependencies": {
+    "@bzsh-ui/utils": "workspace:*",
     "vue": "^3.5.13"
   },
   "devDependencies": {
