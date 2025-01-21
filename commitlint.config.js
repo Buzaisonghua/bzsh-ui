@@ -30,9 +30,9 @@ export default {
         'wip',
         'workflow',
         'types',
-        'release',
-      ],
-    ],
+        'release'
+      ]
+    ]
   },
   prompt: {
     messages: {
@@ -58,64 +58,64 @@ export default {
       footerPrefixsSelect: '选择关联issue前缀（可选）:',
       customFooterPrefixs: '输入自定义issue前缀 :',
       footer: '列举关联issue (可选) 例如: #31, #I3244 :\n',
-      confirmCommit: '是否提交或修改commit ?',
+      confirmCommit: '是否提交或修改commit ?'
     },
     types: [
       {
         value: 'feat',
         name: 'feat:     🚀  A new feature',
-        emoji: '🚀',
+        emoji: '🚀'
       },
       {
         value: 'fix',
         name: 'fix:      🧩  A bug fix',
-        emoji: '🧩',
+        emoji: '🧩'
       },
       {
         value: 'docs',
         name: 'docs:     📚  Documentation only changes',
-        emoji: '📚',
+        emoji: '📚'
       },
       {
         value: 'style',
         name: 'style:    🎨  Changes that do not affect the meaning of the code',
-        emoji: '🎨',
+        emoji: '🎨'
       },
       {
         value: 'refactor',
         name: 'refactor: ♻️   A code change that neither fixes a bug nor adds a feature',
-        emoji: '♻️',
+        emoji: '♻️'
       },
       {
         value: 'perf',
         name: 'perf:     ⚡️  A code change that improves performance',
-        emoji: '⚡️',
+        emoji: '⚡️'
       },
       {
         value: 'test',
         name: 'test:     ✅  Adding missing tests or correcting existing tests',
-        emoji: '✅',
+        emoji: '✅'
       },
       {
         value: 'build',
         name: 'build:    📦️   Changes that affect the build system or external dependencies',
-        emoji: '📦️',
+        emoji: '📦️'
       },
       {
         value: 'ci',
         name: 'ci:       🎡  Changes to our CI configuration files and scripts',
-        emoji: '🎡',
+        emoji: '🎡'
       },
       {
         value: 'chore',
         name: "chore:    🔨  Other changes that don't modify src or test files",
-        emoji: '🔨',
+        emoji: '🔨'
       },
       {
         value: 'revert',
         name: 'revert:   ⏪️  Reverts a previous commit',
-        emoji: '⏪️',
-      },
+        emoji: '⏪️'
+      }
       // 中文版
       // { value: "特性", name: "特性:   🚀  新增功能", emoji: "🚀" },
       // { value: "修复", name: "修复:   🧩  修复缺陷", emoji: "🧩" },
@@ -143,7 +143,7 @@ export default {
     breaklineChar: '|',
     skipQuestions: [],
     issuePrefixs: [
-      { value: 'closed', name: 'closed:   ISSUES has been processed' },
+      { value: 'closed', name: 'closed:   ISSUES has been processed' }
     ],
     customIssuePrefixsAlign: 'top',
     emptyIssuePrefixsAlias: 'skip',
@@ -158,6 +158,6 @@ export default {
     defaultBody: '',
     defaultIssues: '',
     defaultScope: '',
-    defaultSubject: '',
-  },
+    defaultSubject: ''
+  }
 }

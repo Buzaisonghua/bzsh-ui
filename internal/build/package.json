@@ -1,0 +1,8 @@
+{
+  "name": "@bzsh-ui/build",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Build Toolchain for BZSH UI",
+  "scripts": {},
+  "devDependencies": {}
+}
