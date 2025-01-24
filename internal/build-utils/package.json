@@ -18,8 +18,7 @@
     }
   },
   "scripts": {
-    "build": "unbuild",
-    "clean": "rimraf dist"
+    "build": "unbuild"
   },
   "devDependencies": {
     "unbuild": "^3.3.1"
