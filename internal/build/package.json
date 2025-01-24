@@ -3,6 +3,15 @@
   "version": "0.0.1",
   "private": true,
   "description": "Build Toolchain for BZSH UI",
-  "scripts": {},
-  "devDependencies": {}
+  "type": "module",
+  "scripts": {
+    "start": "gulp -f gulpfile.ts"
+  },
+  "devDependencies": {
+    "@esbuild-kit/cjs-loader": "^2.4.4",
+    "chalk": "^5.4.1",
+    "consola": "^3.4.0",
+    "gulp": "^5.0.0",
+    "rollup": "^4.31.0"
+  }
 }

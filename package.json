@@ -21,23 +21,30 @@
     "docs:build": "pnpm run -C docs build",
     "docs:serve": "pnpm run -C docs serve",
     "docs:gen-locale": "pnpm run -C docs gen-locale",
-    "docs:crowdin-credentials": "pnpm run -C docs crowdin-credentials"
+    "docs:crowdin-credentials": "pnpm run -C docs crowdin-credentials",
+    "clean": "pnpm run clean:dist && pnpm run -r --parallel clean",
+    "clean:dist": "rimraf dist",
+    "build": "pnpm run -C internal/build start"
   },
   "dependencies": {
     "@bzsh-ui/components": "workspace:^",
     "vue": "^3.5.13"
   },
   "devDependencies": {
+    "@bzsh-ui/build-utils": "workspace:^",
     "@bzsh-ui/eslint-config": "workspace:^",
     "@bzsh-ui/utils": "workspace:^",
     "@commitlint/cli": "^19.6.1",
     "@commitlint/config-conventional": "^19.6.0",
+    "@types/gulp": "^4.0.17",
+    "@types/node": "^22.10.10",
     "@vitejs/plugin-vue": "^5.2.1",
     "@vue/tsconfig": "^0.7.0",
     "cz-git": "^1.11.0",
     "czg": "^1.11.0",
     "eslint": "^8.57.1",
     "eslint-define-config": "^1.5.1",
+    "gulp": "^5.0.0",
     "husky": "^9.1.7",
     "lint-staged": "^15.4.0",
     "lodash-unified": "^1.0.3",
@@ -45,6 +52,7 @@
     "postcss-html": "^1.8.0",
     "postcss-less": "^6.0.0",
     "prettier": "^3.4.2",
+    "rimraf": "^6.0.1",
     "standard-version": "^9.5.0",
     "stylelint": "^16.13.2",
     "stylelint-config-prettier": "^9.0.5",
@@ -53,6 +61,7 @@
     "stylelint-config-standard-vue": "^1.0.0",
     "stylelint-less": "^3.0.1",
     "stylelint-order": "^6.0.4",
+    "sucrase": "^3.35.0",
     "typescript": "~5.6.2",
     "vite": "^6.0.5",
     "vue-tsc": "^2.2.0"
