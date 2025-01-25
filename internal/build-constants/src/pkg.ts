@@ -1,0 +1,5 @@
+export const PKG_PREFIX = '@bzsh-ui'
+export const PKG_NAME = 'bzsh-ui'
+export const PKG_CAMELCASE_NAME = 'BzshUi'
+export const PKG_CAMELCASE_LOCAL_NAME = 'BzshUiLocale'
+export const PKG_BRAND_NAME = 'Bzsh Ui'

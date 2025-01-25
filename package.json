@@ -25,20 +25,22 @@
     "clean": "pnpm run clean:dist && pnpm run -r --parallel clean",
     "clean:dist": "rimraf dist",
     "clear": "pnpm run clear:node_modules && pnpm run -r --parallel clear",
-    "clear:node_modules": "rimraf node_modules",
+    "clear:node_modules": "rimraf node_modules && rimraf pnpm-lock.yaml",
     "build": "pnpm run -C internal/build start"
   },
   "dependencies": {
+    "@bzsh-ui/build-constants": "workspace:^",
     "@bzsh-ui/components": "workspace:^",
+    "D": "^1.0.0",
     "vue": "^3.5.13"
   },
   "devDependencies": {
-    "@bzsh-ui/build-utils": "workspace:^0.0.1",
+    "@bzsh-ui/build-utils": "workspace:^",
     "@bzsh-ui/eslint-config": "workspace:^",
     "@bzsh-ui/utils": "workspace:^",
     "@commitlint/cli": "^19.6.1",
     "@commitlint/config-conventional": "^19.6.0",
-    "@pnpm/types": "^1000.1.0",
+    "@pnpm/types": "^8.4.0",
     "@types/gulp": "^4.0.17",
     "@types/node": "^22.10.10",
     "@vitejs/plugin-vue": "^5.2.1",

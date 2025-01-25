@@ -1,15 +1,15 @@
 import { series } from 'gulp'
 import glob from 'fast-glob'
-import { excludeFiles, pkgRoot } from '@bzsh-ui/build-utils'
-import { type Plugin, rollup } from 'rollup'
+import { epRoot, excludeFiles, pkgRoot } from '@bzsh-ui/build-utils'
+import { type OutputOptions, type Plugin, rollup } from 'rollup'
 import VueMacros from 'unplugin-vue-macros/rollup'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import { nodeResolve } from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'
 import esbuild from 'rollup-plugin-esbuild'
-import { generateExternal, withTaskName } from '../utils'
-import { target } from '../build-info'
+import { generateExternal, withTaskName, writeBundles } from '../utils'
+import { buildConfigEntries, target } from '../build-info'
 import type { TaskFunction } from 'gulp'
 
 const plugins: Plugin[] = [
@@ -60,13 +60,28 @@ async function buildModulesComponents() {
     input,
     // 打包插件配置
     plugins,
+    // 外部依赖
     external: await generateExternal({ full: false }),
     /** 树摇配置：所有文件都可以 */
     treeshake: {
       moduleSideEffects: false // 假设所有模块都没有副作用
     }
   })
-  console.log(111112222, bundle)
+
+  await writeBundles(
+    bundle,
+    buildConfigEntries.map(([module, config]): OutputOptions => {
+      return {
+        format: config.format,
+        dir: config.output.path,
+        exports: module === 'cjs' ? 'named' : undefined,
+        preserveModules: true,
+        preserveModulesRoot: epRoot,
+        sourcemap: true,
+        entryFileNames: `[name].${config.ext}`
+      }
+    })
+  )
 }
 
 export const buildModules: TaskFunction = series(

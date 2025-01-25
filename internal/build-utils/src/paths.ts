@@ -9,4 +9,5 @@ export const epRoot = resolve(pkgRoot, 'bzsh-ui')
 export const buildOutput = resolve(projRoot, 'dist')
 /** `/dist/bzsh-ui` */
 export const epOutput = resolve(buildOutput, 'bzsh-ui')
+/** @packages/bzsh-ui/package.json */
 export const epPackage = resolve(epRoot, 'package.json')

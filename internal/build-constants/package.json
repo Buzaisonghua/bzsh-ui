@@ -1,8 +1,7 @@
 {
-  "name": "@bzsh-ui/build-utils",
+  "name": "@bzsh-ui/build-constants",
   "version": "0.0.1",
-  "private": true,
-  "description": "Build utils for Bzsh Ui",
+  "description": "Build constants for BZSH UI",
   "keywords": [
     "bzsh-ui"
   ],
@@ -19,15 +18,10 @@
   },
   "scripts": {
     "build": "unbuild",
-    "clear": "rimraf node_modules"
-  },
-  "dependencies": {
-    "@pnpm/find-workspace-packages": "^4.0.16",
-    "@pnpm/logger": "^4.0.0",
-    "consola": "^2.15.3"
+    "dev": "pnpm run stub",
+    "stub": "unbuild --stub"
   },
   "devDependencies": {
-    "@pnpm/types": "^1000.1.0",
     "unbuild": "^3.3.1"
   }
 }

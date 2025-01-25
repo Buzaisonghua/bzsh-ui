@@ -4,8 +4,7 @@
     "composite": true,
     "lib": ["ESNext"],
     "types": ["node"],
-    "skipLibCheck": true,
-    "declaration": true
+    "skipLibCheck": true
   },
   "include": [
     "internal/**/*",
