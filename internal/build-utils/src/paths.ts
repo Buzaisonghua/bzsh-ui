@@ -1,12 +1,12 @@
-import { fileURLToPath } from 'url'
-import { dirname, resolve } from 'path'
-
-// 获取当前模块目录的路径
-const __dirname = dirname(fileURLToPath(import.meta.url))
+import { resolve } from 'path'
 
 export const projRoot = resolve(__dirname, '..', '..', '..')
+export const pkgRoot = resolve(projRoot, 'packages')
+export const buildRoot = resolve(projRoot, 'internal', 'build')
+export const epRoot = resolve(pkgRoot, 'bzsh-ui')
 
 /** `/dist` */
 export const buildOutput = resolve(projRoot, 'dist')
 /** `/dist/bzsh-ui` */
 export const epOutput = resolve(buildOutput, 'bzsh-ui')
+export const epPackage = resolve(epRoot, 'package.json')

@@ -11,7 +11,8 @@
     "access": "public"
   },
   "scripts": {
-    "clean": "rimraf dist"
+    "clean": "rimraf dist",
+    "clear": "rimraf node_modules"
   },
   "peerDependencies": {
     "eslint": "^8.0.0"

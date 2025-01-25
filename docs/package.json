@@ -4,7 +4,8 @@
   "scripts": {
     "dev": "vitepress dev .",
     "build": "vitepress build .",
-    "preview": "vitepress preview ."
+    "preview": "vitepress preview .",
+    "clear": "rimraf node_modules"
   },
   "devDependencies": {
     "vitepress": "^1.6.0"

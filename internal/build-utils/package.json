@@ -18,7 +18,8 @@
     }
   },
   "scripts": {
-    "build": "unbuild"
+    "build": "unbuild",
+    "clear": "rimraf node_modules"
   },
   "devDependencies": {
     "unbuild": "^3.3.1"

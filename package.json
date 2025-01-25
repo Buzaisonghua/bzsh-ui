@@ -24,6 +24,8 @@
     "docs:crowdin-credentials": "pnpm run -C docs crowdin-credentials",
     "clean": "pnpm run clean:dist && pnpm run -r --parallel clean",
     "clean:dist": "rimraf dist",
+    "clear": "pnpm run clear:node_modules && pnpm run -r --parallel clear",
+    "clear:node_modules": "rimraf node_modules",
     "build": "pnpm run -C internal/build start"
   },
   "dependencies": {
@@ -31,19 +33,22 @@
     "vue": "^3.5.13"
   },
   "devDependencies": {
-    "@bzsh-ui/build-utils": "workspace:^",
+    "@bzsh-ui/build-utils": "workspace:^0.0.1",
     "@bzsh-ui/eslint-config": "workspace:^",
     "@bzsh-ui/utils": "workspace:^",
     "@commitlint/cli": "^19.6.1",
     "@commitlint/config-conventional": "^19.6.0",
+    "@pnpm/types": "^1000.1.0",
     "@types/gulp": "^4.0.17",
     "@types/node": "^22.10.10",
     "@vitejs/plugin-vue": "^5.2.1",
+    "@vitejs/plugin-vue-jsx": "^4.1.1",
     "@vue/tsconfig": "^0.7.0",
     "cz-git": "^1.11.0",
     "czg": "^1.11.0",
     "eslint": "^8.57.1",
     "eslint-define-config": "^1.5.1",
+    "fast-glob": "^3.3.3",
     "gulp": "^5.0.0",
     "husky": "^9.1.7",
     "lint-staged": "^15.4.0",
@@ -63,6 +68,7 @@
     "stylelint-order": "^6.0.4",
     "sucrase": "^3.35.0",
     "typescript": "~5.6.2",
+    "unplugin-vue-macros": "^2.13.10",
     "vite": "^6.0.5",
     "vue-tsc": "^2.2.0"
   },
