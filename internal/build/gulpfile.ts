@@ -1,13 +1,19 @@
-import { mkdir } from 'fs/promises'
+import { copyFile, mkdir } from 'fs/promises'
+import path from 'path'
 import { parallel, series } from 'gulp'
-import { epOutput } from '@bzsh-ui/build-utils'
+import { epOutput, epPackage } from '@bzsh-ui/build-utils'
 import { run, runTask, withTaskName } from './src'
+
+export const copyFiles = () =>
+  Promise.all([copyFile(epPackage, path.join(epOutput, 'package.json'))])
 
 export default series(
   withTaskName('clean', () => run('pnpm run clean')),
   withTaskName('createOutput', () => mkdir(epOutput, { recursive: true })),
 
-  parallel(runTask('buildModules'))
+  parallel(runTask('buildModules')),
+
+  parallel(copyFiles)
 )
 
 /**

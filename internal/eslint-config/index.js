@@ -243,10 +243,6 @@ module.exports = defineConfig({
             pattern: '@vue/**',
             group: 'external',
             position: 'before'
-          },
-          {
-            pattern: '@element-plus/**',
-            group: 'internal'
           }
         ],
         pathGroupsExcludedImportTypes: ['type']

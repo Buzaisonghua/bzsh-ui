@@ -18,8 +18,9 @@
     }
   },
   "scripts": {
-    "build": "unbuild",
-    "clear": "rimraf node_modules"
+    "clear": "rimraf node_modules",
+    "dev": "pnpm run stub",
+    "stub": "unbuild --stub"
   },
   "dependencies": {
     "@pnpm/find-workspace-packages": "^4.0.16",

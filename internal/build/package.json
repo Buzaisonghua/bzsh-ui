@@ -8,7 +8,8 @@
   "types": "./dist/index.d.ts",
   "scripts": {
     "start": "gulp --require @esbuild-kit/cjs-loader -f gulpfile.ts",
-    "clear": "rimraf node_modules"
+    "dev": "pnpm run stub",
+    "stub": "unbuild --stub"
   },
   "devDependencies": {
     "@esbuild-kit/cjs-loader": "^2.4.4",

@@ -60,7 +60,7 @@ async function buildModulesComponents() {
     input,
     // 打包插件配置
     plugins,
-    // 外部依赖
+    // 外部依赖,这些以来不打包
     external: await generateExternal({ full: false }),
     /** 树摇配置：所有文件都可以 */
     treeshake: {
@@ -72,10 +72,14 @@ async function buildModulesComponents() {
     bundle,
     buildConfigEntries.map(([module, config]): OutputOptions => {
       return {
+        // 指定输出文件格式
         format: config.format,
+        // 输出文件路径
         dir: config.output.path,
         exports: module === 'cjs' ? 'named' : undefined,
+        // 不将所有文件合并
         preserveModules: true,
+        // 打包路径
         preserveModulesRoot: epRoot,
         sourcemap: true,
         entryFileNames: `[name].${config.ext}`
@@ -84,6 +88,37 @@ async function buildModulesComponents() {
   )
 }
 
+// async function buildModulesStyles() {
+//   const input = excludeFiles(
+//     await glob('**/style/(index|css).{js,ts,vue}', {
+//       cwd: pkgRoot,
+//       absolute: true,
+//       onlyFiles: true
+//     })
+//   )
+//   const bundle = await rollup({
+//     input,
+//     plugins,
+//     treeshake: false
+//   })
+
+//   await writeBundles(
+//     bundle,
+//     buildConfigEntries.map(([module, config]): OutputOptions => {
+//       return {
+//         format: config.format,
+//         dir: path.resolve(config.output.path, 'components'),
+//         exports: module === 'cjs' ? 'named' : undefined,
+//         preserveModules: true,
+//         preserveModulesRoot: epRoot,
+//         sourcemap: true,
+//         entryFileNames: `[name].${config.ext}`
+//       }
+//     })
+//   )
+// }
+
 export const buildModules: TaskFunction = series(
   withTaskName('buildModulesComponents', buildModulesComponents)
+  // withTaskName('buildModulesStyles', buildModulesStyles)s
 )

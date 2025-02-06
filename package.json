@@ -13,7 +13,6 @@
     "lint": "eslint . --max-warnings 0 --cache",
     "lint:fix": "pnpm run lint --fix",
     "lint:lint-staged": "lint-staged",
-    "lint:style": "stylelint \"./**/*.{css,less,vue,html}\" --fix",
     "cz": "czg",
     "commit": "git pull && git add -A && git-cz && git push",
     "release": "standard-version && git push --follow-tags",
@@ -26,12 +25,13 @@
     "clean:dist": "rimraf dist",
     "clear": "pnpm run clear:node_modules && pnpm run -r --parallel clear",
     "clear:node_modules": "rimraf node_modules && rimraf pnpm-lock.yaml",
-    "build": "pnpm run -C internal/build start"
+    "build": "pnpm run -C internal/build start",
+    "stub": "pnpm run -r --parallel stub",
+    "postinstall": "pnpm stub"
   },
   "dependencies": {
     "@bzsh-ui/build-constants": "workspace:^",
     "@bzsh-ui/components": "workspace:^",
-    "D": "^1.0.0",
     "vue": "^3.5.13"
   },
   "devDependencies": {
@@ -41,7 +41,7 @@
     "@commitlint/cli": "^19.6.1",
     "@commitlint/config-conventional": "^19.6.0",
     "@pnpm/types": "^8.4.0",
-    "@types/gulp": "^4.0.17",
+    "@types/gulp": "^4.0.9",
     "@types/node": "^22.10.10",
     "@vitejs/plugin-vue": "^5.2.1",
     "@vitejs/plugin-vue-jsx": "^4.1.1",
@@ -61,13 +61,6 @@
     "prettier": "^3.4.2",
     "rimraf": "^6.0.1",
     "standard-version": "^9.5.0",
-    "stylelint": "^16.13.2",
-    "stylelint-config-prettier": "^9.0.5",
-    "stylelint-config-recommended-less": "^3.0.1",
-    "stylelint-config-standard": "^37.0.0",
-    "stylelint-config-standard-vue": "^1.0.0",
-    "stylelint-less": "^3.0.1",
-    "stylelint-order": "^6.0.4",
     "sucrase": "^3.35.0",
     "typescript": "~5.6.2",
     "unplugin-vue-macros": "^2.13.10",

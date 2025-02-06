@@ -1,0 +1,35 @@
+{
+  "name": "@bzsh-ui/theme-chalk",
+  "version": "0.1.0",
+  "description": "Bzsh Ui chalk theme.",
+  "keywords": [
+    "vue-components",
+    "bzsh-ui",
+    "theme-chalk",
+    "theme-light"
+  ],
+  "license": "MIT",
+  "author": "yi.shyang@ele.me",
+  "main": "index.css",
+  "unpkg": "index.css",
+  "jsdelivr": "index.css",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Buzaisonghua/bzsh-ui"
+  },
+  "style": "index.css",
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "gulp --require @esbuild-kit/cjs-loader"
+  },
+  "devDependencies": {
+    "@bzsh-ui/build": "workspace:*",
+    "@esbuild-kit/cjs-loader": "^2.2.1",
+    "cssnano": "^6.0.5",
+    "gulp-autoprefixer": "^8.0.0",
+    "gulp-rename": "^2.0.0",
+    "gulp-sass": "^6.0.0",
+    "postcss": "^8.4.35"
+  },
+  "gitHead": "c69724230befa8fede0e6b9c37fb0b7e39fd7cdd"
+}
