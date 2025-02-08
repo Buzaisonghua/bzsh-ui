@@ -9,5 +9,6 @@ ssr-testing/cases/*
 docs/.vitepress/i18n/*
 docs/.vitepress/cache/*
 docs/.vitepress/crowdin/*
+.npmrc
 !docs/.vitepress/crowdin/en-US
 !.*

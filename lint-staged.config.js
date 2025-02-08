@@ -1,8 +1,5 @@
 export default {
-  '*.{js,jsx,ts,tsx}': ['eslint --fix', 'prettier --write'],
-  '{!(package)*.json,*.code-snippets,.!(browserslist)*rc}': [
-    'prettier --write--parser json'
-  ],
+  '*.{js,jsx,ts,tsx}': ['eslint --fix'],
   'package.json': ['prettier --write'],
   '*.md': ['prettier --write']
 }

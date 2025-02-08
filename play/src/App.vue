@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { BzIcon } from '../../dist/bzsh-ui/es/components/index.mjs'
+import { BzIcon } from '../../dist/bzsh-ui'
 </script>
 
 <template>

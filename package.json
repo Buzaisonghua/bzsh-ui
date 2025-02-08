@@ -49,7 +49,7 @@
     "czg": "^1.11.0",
     "eslint": "^8.57.1",
     "fast-glob": "^3.3.3",
-    "gulp": "^5.0.0",
+    "gulp": "^4.0.2",
     "husky": "^9.1.7",
     "lint-staged": "^15.4.0",
     "lodash-unified": "^1.0.3",
