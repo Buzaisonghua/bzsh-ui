@@ -31,5 +31,5 @@ jobs:
           registry-url: https://registry.npmjs.org/
           run: sh ./scripts/publish.sh
         env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_PUBLISH_TOKEN}}
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
       - run: ls -a
