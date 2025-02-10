@@ -23,6 +23,10 @@ jobs:
         with:
           version: '8.6.0'
 
+      - name: Get current date
+        id: date
+        run: echo "date=$(date +'%Y%m%d')" >> $GITHUB_OUTPUT
+
       - name: Get version
         run: echo "TAG_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
 
@@ -33,7 +37,7 @@ jobs:
         run: sh ./scripts/publish.sh
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
-          TAG_VERSION: 'a123'
+          TAG_VERSION: 0.0.${{ steps.date.outputs.date }}
           GIT_HEAD: ${{env.GIT_HEAD}}
           REGISTRY: https://registry.npmjs.com/
           NODE_OPTIONS: --max-old-space-size=4096
