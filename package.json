@@ -26,7 +26,8 @@
     "clear:node_modules": "rimraf node_modules && rimraf pnpm-lock.yaml",
     "build": "pnpm run -C internal/build start",
     "stub": "pnpm run -r --parallel stub",
-    "postinstall": "pnpm stub"
+    "postinstall": "pnpm stub",
+    "update:version": "tsx scripts/update-version.ts"
   },
   "dependencies": {
     "@bzsh-ui/components": "workspace:^",
