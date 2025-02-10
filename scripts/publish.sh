@@ -4,7 +4,6 @@ set -e
 
 pnpm i --frozen-lockfile
 
-
 pnpm build
 
 cd dist/bzsh-ui
