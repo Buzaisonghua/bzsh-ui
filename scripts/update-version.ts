@@ -4,8 +4,13 @@ import { errorAndExit, getWorkspacePackages } from '@bzsh-ui/build-utils'
 import type { Project } from '@pnpm/find-workspace-packages'
 
 async function main() {
+  console.log(1)
   const tagVersion = process.env.TAG_VERSION
+  console.log(2)
+  console.log(tagVersion)
   const gitHead = process.env.GIT_HEAD
+  console.log(3)
+  console.log(gitHead)
   if (!tagVersion || !gitHead) {
     errorAndExit(
       new Error(
