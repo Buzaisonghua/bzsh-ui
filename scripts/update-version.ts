@@ -4,8 +4,8 @@ import { errorAndExit, getWorkspacePackages } from '@bzsh-ui/build-utils'
 import type { Project } from '@pnpm/find-workspace-packages'
 
 async function main() {
-  const tagVersion = 'main' // process.env.TAG_VERSION
-  const gitHead = '64b465357f86d41d275334217fc0b5dd10e5e856' // process.env.GIT_HEAD
+  const tagVersion = process.env.TAG_VERSION
+  const gitHead = process.env.GIT_HEAD
   if (!tagVersion || !gitHead) {
     errorAndExit(
       new Error(
@@ -40,9 +40,8 @@ async function main() {
     errorAndExit(err)
   }
 
-  consola.log(bzshUi.manifest)
-
   consola.debug(chalk.green(`$GIT_HEAD: ${gitHead}`))
+  consola.success(chalk.green(`Git tagVersion updated to ${tagVersion}`))
   consola.success(chalk.green(`Git head updated to ${gitHead}`))
 }
 
