@@ -13,7 +13,6 @@
   "license": "MIT",
   "main": "lib/index.js",
   "module": "es/index.mjs",
-  "types": "es/index.d.ts",
   "exports": {
     ".": {
       "types": "./es/index.d.ts",
@@ -57,6 +56,11 @@
   },
   "unpkg": "dist/index.full.js",
   "jsdelivr": "dist/index.full.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Buzaisonghua/bzsh-ui"
+  },
+  "types": "es/index.d.ts",
   "publishConfig": {
     "access": "public"
   },
