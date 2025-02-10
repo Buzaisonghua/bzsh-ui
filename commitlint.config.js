@@ -58,7 +58,8 @@ export default {
       footerPrefixsSelect: '选择关联issue前缀（可选）:',
       customFooterPrefixs: '输入自定义issue前缀 :',
       footer: '列举关联issue (可选) 例如: #31, #I3244 :\n',
-      confirmCommit: '是否提交或修改commit ?'
+      confirmCommit: '是否提交或修改commit ?',
+      release: '打包发布'
     },
     types: [
       {
@@ -115,6 +116,11 @@ export default {
         value: 'revert',
         name: 'revert:   ⏪️  Reverts a previous commit',
         emoji: '⏪️'
+      },
+      {
+        value: 'release',
+        name: 'release:  ⛅  publish npm',
+        emoji: '⛅'
       }
       // 中文版
       // { value: "特性", name: "特性:   🚀  新增功能", emoji: "🚀" },
