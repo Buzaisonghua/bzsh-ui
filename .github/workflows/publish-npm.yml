@@ -20,6 +20,8 @@ jobs:
           cache: pnpm
       - name: Install dependencies
         run: pnpm install
+      - name: Install build
+        run: npm run build
   publish-npm:
     needs: build
     runs-on: ubuntu-latest
