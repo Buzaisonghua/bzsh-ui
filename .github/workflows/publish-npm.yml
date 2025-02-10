@@ -1,36 +1,39 @@
-name: NPM Publish
+name: Publish to NPM registry
+
 on:
   release:
     types: [created]
+
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Add dev branch
+        run: git branch dev origin/dev
+        run: pnpm test
+
+  publish:
+    needs: test
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: https://registry.npmjs.com/
+
       - name: Setup pnpm
-        uses: pnpm/action-setup@v3
-        with:
-          version: 9
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: pnpm
-      - name: Install dependencies
-        run: pnpm install
-  publish-npm:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        uses: actions/setup-node@v4
-      - name: publish
-        with:
-          node-version: 20
-          registry-url: https://registry.npmjs.org/
-          run: sh ./scripts/publish.sh
+        uses: pnpm/action-setup@v4
+
+      - name: Build&publish
+        run: sh ./scripts/publish.sh
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
-      - run: ls -a
