@@ -1,9 +1,11 @@
+import findWorkspacePackages from '@pnpm/find-workspace-packages'
 import { projRoot } from './paths'
+
+export const getWorkspacePackages = () => findWorkspacePackages(projRoot)
 /**
  * 是一个 TypeScript 类型定义，表示一个 PNPM 项目的元数据。
  * 它通常用于描述一个项目（或包）的结构和配置信息，类似于 package.json 文件的内容。
  */
-
 export const getPackageManifest = (pkgPath: string) => {
   // eslint-disable-next-line @typescript-eslint/no-var-requires
   return require(pkgPath) as Record<
