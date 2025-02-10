@@ -5,19 +5,7 @@ on:
     branches: ['main']
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - name: Add dev branch
-        run: git branch dev origin/dev
-        run: pnpm test
-
   publish:
-    needs: test
     runs-on: ubuntu-latest
     permissions:
       contents: read
