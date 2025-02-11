@@ -11,7 +11,7 @@ export default series(
   withTaskName('clean', () => run('pnpm run clean')),
   withTaskName('createOutput', () => mkdir(epOutput, { recursive: true })),
 
-  parallel(runTask('buildModules')),
+  parallel(runTask('buildModules'), runTask('generateTypesDefinitions')),
 
   parallel(copyFiles)
 )

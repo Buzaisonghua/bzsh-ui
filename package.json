@@ -26,8 +26,10 @@
     "clear:node_modules": "rimraf node_modules && rimraf pnpm-lock.yaml",
     "build": "pnpm run -C internal/build start",
     "stub": "pnpm run -r --parallel stub",
-    "postinstall": "pnpm stub",
-    "update:version": "tsx scripts/update-version.ts"
+    "postinstall": "pnpm stub && pnpm gen:version",
+    "update:version": "tsx scripts/update-version.ts",
+    "gen:version": "tsx scripts/gen-version.ts",
+    "te": "tsx packages/utils/types.ts"
   },
   "dependencies": {
     "@bzsh-ui/components": "workspace:^",
@@ -62,8 +64,9 @@
     "standard-version": "^9.5.0",
     "sucrase": "^3.35.0",
     "typescript": "^5.7.3",
-    "unplugin-vue-macros": "^2.13.10",
-    "vite": "^6.0.5"
+    "unplugin-vue-macros": "^2.14.2",
+    "vite": "^6.0.5",
+    "vue-tsc": "^2.2.0"
   },
   "config": {
     "commitizen": {

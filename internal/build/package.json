@@ -15,8 +15,10 @@
     "@esbuild-kit/cjs-loader": "^2.4.4",
     "@rollup/plugin-commonjs": "^28.0.2",
     "@rollup/plugin-node-resolve": "^16.0.0",
+    "@types/fs-extra": "^11.0.4",
     "chalk": "^5.4.1",
     "consola": "^3.4.0",
+    "fs-extra": "^11.3.0",
     "rollup": "^4.31.0",
     "rollup-plugin-esbuild": "^6.1.1",
     "unbuild": "^3.3.1"
