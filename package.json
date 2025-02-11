@@ -29,7 +29,7 @@
     "postinstall": "pnpm stub && pnpm gen:version",
     "update:version": "tsx scripts/update-version.ts",
     "gen:version": "tsx scripts/gen-version.ts",
-    "te": "tsx packages/utils/types.ts"
+    "te": "tsx packages/components/icon/src/icon.ts"
   },
   "dependencies": {
     "@bzsh-ui/components": "workspace:^",

@@ -98,6 +98,7 @@ export const buildProp = <
   return epProp
 }
 
+/** buildProps 函数：用于构建一个新的对象，处理传入的 props 参数 */
 export const buildProps = <
   Props extends Record<
     string,
