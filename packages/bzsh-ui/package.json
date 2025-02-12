@@ -59,7 +59,7 @@
   "jsdelivr": "dist/index.full.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/element-plus/element-plus.git"
+    "url": "git+https://github.com/Buzaisonghua/bzsh-ui.git"
   },
   "publishConfig": {
     "access": "public"
