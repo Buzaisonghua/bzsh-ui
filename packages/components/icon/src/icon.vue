@@ -9,7 +9,7 @@
 import { iconProps } from './icon'
 
 defineOptions({
-  name: 'ElIcon',
+  name: 'BzIcon',
   inheritAttrs: false
 })
 const props = defineProps(iconProps)
