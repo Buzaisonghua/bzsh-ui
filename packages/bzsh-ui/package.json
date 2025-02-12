@@ -13,7 +13,7 @@
   "license": "MIT",
   "main": "lib/index.js",
   "module": "es/index.mjs",
-  "types": "es/index.d.ts",
+  "typings": "es/index.d.ts",
   "exports": {
     ".": {
       "types": "./es/index.d.ts",
