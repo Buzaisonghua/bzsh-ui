@@ -1,6 +1,6 @@
 <template>
   <div>
-    <span class="icon">我是ICONS</span>
+    <span class="icon">我是ICONSa1a2a3</span>
     <span>{{ props }}</span>
   </div>
 </template>
