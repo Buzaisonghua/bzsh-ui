@@ -1,3 +1,4 @@
+import path from 'path'
 import { series } from 'gulp'
 import glob from 'fast-glob'
 import { epRoot, excludeFiles, pkgRoot } from '@bzsh-ui/build-utils'
@@ -88,37 +89,37 @@ async function buildModulesComponents() {
   )
 }
 
-// async function buildModulesStyles() {
-//   const input = excludeFiles(
-//     await glob('**/style/(index|css).{js,ts,vue}', {
-//       cwd: pkgRoot,
-//       absolute: true,
-//       onlyFiles: true
-//     })
-//   )
-//   const bundle = await rollup({
-//     input,
-//     plugins,
-//     treeshake: false
-//   })
+async function buildModulesStyles() {
+  const input = excludeFiles(
+    await glob('**/style/(index|css).{js,ts,vue}', {
+      cwd: pkgRoot,
+      absolute: true,
+      onlyFiles: true
+    })
+  )
+  const bundle = await rollup({
+    input,
+    plugins,
+    treeshake: false
+  })
 
-//   await writeBundles(
-//     bundle,
-//     buildConfigEntries.map(([module, config]): OutputOptions => {
-//       return {
-//         format: config.format,
-//         dir: path.resolve(config.output.path, 'components'),
-//         exports: module === 'cjs' ? 'named' : undefined,
-//         preserveModules: true,
-//         preserveModulesRoot: epRoot,
-//         sourcemap: true,
-//         entryFileNames: `[name].${config.ext}`
-//       }
-//     })
-//   )
-// }
+  await writeBundles(
+    bundle,
+    buildConfigEntries.map(([module, config]): OutputOptions => {
+      return {
+        format: config.format,
+        dir: path.resolve(config.output.path, 'components'),
+        exports: module === 'cjs' ? 'named' : undefined,
+        preserveModules: true,
+        preserveModulesRoot: epRoot,
+        sourcemap: true,
+        entryFileNames: `[name].${config.ext}`
+      }
+    })
+  )
+}
 
 export const buildModules: TaskFunction = series(
-  withTaskName('buildModulesComponents', buildModulesComponents)
-  // withTaskName('buildModulesStyles', buildModulesStyles)s
+  withTaskName('buildModulesComponents', buildModulesComponents),
+  withTaskName('buildModulesStyles', buildModulesStyles)
 )
