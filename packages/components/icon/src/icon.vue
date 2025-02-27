@@ -1,16 +1,30 @@
 <template>
-  <div>
-    <span class="icon">我是ICONSa1a2a3</span>
-    <span>{{ props }}</span>
-  </div>
+  <i :class="ns.b()" :style="style" v-bind="$attrs">
+    <slot />
+  </i>
 </template>
 
 <script lang="ts" setup>
+import { computed } from 'vue'
+import { addUnit, isUndefined } from '@bzsh-ui/utils'
+import { useNamespace } from '@bzsh-ui/hooks'
 import { iconProps } from './icon'
+import type { CSSProperties } from 'vue'
 
 defineOptions({
-  name: 'BzIcon',
+  name: 'ElIcon',
   inheritAttrs: false
 })
 const props = defineProps(iconProps)
+const ns = useNamespace('icon')
+
+const style = computed<CSSProperties>(() => {
+  const { size, color } = props
+  if (!size && !color) return {}
+
+  return {
+    fontSize: isUndefined(size) ? undefined : addUnit(size),
+    '--color': color
+  }
+})
 </script>
