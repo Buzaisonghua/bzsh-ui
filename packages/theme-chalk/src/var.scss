@@ -1,3 +1,1 @@
-.var {
-  color: yellow;
-}
+@use 'common/var.scss' as *;
